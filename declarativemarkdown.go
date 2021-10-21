@@ -42,11 +42,16 @@ func (m *Markdown) Header(text string, weigth int) *Markdown {
 }
 
 func (m *Markdown) AddLine(text string) *Markdown {
-	m.data = append(m.data, fmt.Sprintf("%s%s", text, LineBreak))
+	m.data = append(m.data, text)
 	return m
 }
 
 func (m *Markdown) Paragraph(text string) *Markdown {
 	m.AddLine(text)
+	return m
+}
+
+func (m *Markdown) Image(altText string, filepath string) *Markdown {
+	m.AddLine(fmt.Sprintf("![%s](%s)", altText, filepath))
 	return m
 }

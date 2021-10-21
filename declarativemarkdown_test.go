@@ -13,53 +13,63 @@ func TestInit(t *testing.T) {
 }
 
 func TestHeader(t *testing.T) {
-	md := CreateMarkdown("Title")
+	txt := "MyHeader"
+	md := CreateMarkdown(txt)
 
-	if md.data[0] != "# Title" {
+	if md.GetLine(0) != fmt.Sprintf("# %s", txt) {
 		t.Errorf("Header method failed")
 	}
 
-	md.Header("MyHeader", 2)
-	if md.data[1] != "## MyHeader" {
+	md.Header(txt, 2)
+	if md.GetLine(1) != fmt.Sprintf("## %s", txt) {
 		t.Errorf("Header method failed")
 	}
 
-	md.Header("MyHeader", 3)
-	if md.data[2] != "### MyHeader" {
+	md.Header(txt, 3)
+	if md.GetLine(2) != fmt.Sprintf("### %s", txt) {
 		t.Errorf("Header method failed")
 	}
 
-	md.Header("MyHeader", 0)
-	if md.data[3] != "# MyHeader" {
+	md.Header(txt, 0)
+	if md.GetLine(3) != fmt.Sprintf("# %s", txt) {
 		t.Errorf("Didnt default to 1")
 	}
 
-	md.Header("MyHeader", 7)
-	if md.data[4] != "###### MyHeader" {
+	md.Header(txt, 7)
+	if md.GetLine(4) != fmt.Sprintf("###### %s", txt) {
 		t.Errorf("Didnt default to 6")
 	}
 }
 
 func TestRender(t *testing.T) {
 	md := CreateMarkdown("Title")
-	md.Header("MyHeader", 2)
-	if md.Render() != fmt.Sprintf("# Title%s## MyHeader%s", LineBreak, LineBreak) {
+	if md.Render() != "# Title" {
 		t.Errorf("Rendered content differs")
 	}
 }
 
-// func TestGetLine(t *testing.T) {
-// 	md := CreateMarkdown("Title")
-// 	if md.GetLine(0) != fmt.Sprintf("Title") {
-// 		t.Errorf("Paragraph is different from input")
-// 	}
-// }
+func TestGetLine(t *testing.T) {
+	md := CreateMarkdown("Title")
+	if md.GetLine(0) != "# Title" {
+		t.Errorf("Paragraph is different from input")
+	}
+}
 
 func TestParagraph(t *testing.T) {
 	md := CreateMarkdown("Title")
 	txt := "Lorem Ipsum Ajeje Brazorf"
 	md.Paragraph(txt)
-	if md.GetLine(1) != fmt.Sprintf("Lorem Ipsum Ajeje Brazorf%s", LineBreak) {
+	if md.GetLine(1) != txt {
+		t.Errorf("Paragraph is different from input")
+	}
+}
+
+func TestImage(t *testing.T) {
+	md := CreateMarkdown("Title")
+	txt := "here"
+	img := "./image.png"
+	md.Image(txt, img)
+	if md.GetLine(1) != fmt.Sprintf("![%s](%s)", txt, img) {
 		t.Errorf("Paragraph is different from input")
 	}
 }
