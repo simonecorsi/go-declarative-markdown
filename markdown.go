@@ -1,4 +1,4 @@
-package declarativemarkdown
+package markdown
 
 import (
 	"fmt"
@@ -27,7 +27,7 @@ func (m *Markdown) GetLine(line int) string {
 }
 
 func (m *Markdown) Render() string {
-	return strings.Join(m.data, LineBreak)
+	return strings.Join(m.data, LineBreak+LineBreak)
 }
 
 func (m *Markdown) Header(text string, weigth int) *Markdown {
@@ -51,14 +51,24 @@ func (m *Markdown) Paragraph(text string) *Markdown {
 	return m
 }
 
+func (m *Markdown) Quote(text string) *Markdown {
+	m.AddLine(fmt.Sprintf("> %s", text))
+	return m
+}
+
+func (m *Markdown) Code(text string, language string) *Markdown {
+	m.AddLine(fmt.Sprintf("```\n%s\n```", text))
+	return m
+}
+
 func (m *Markdown) Image(altText string, filepath string) *Markdown {
 	m.AddLine(fmt.Sprintf("![%s](%s)", altText, filepath))
 	return m
 }
 
 type ListItem struct {
-	label string
-	depth int
+	Label string
+	Depth int
 }
 
 func (m *Markdown) List(items []ListItem, numbered bool) *Markdown {
@@ -71,11 +81,11 @@ func (m *Markdown) List(items []ListItem, numbered bool) *Markdown {
 		results = append(results, fmt.Sprintf(
 			"%s%s %s",
 			// spaces
-			strings.Repeat("  ", item.depth),
+			strings.Repeat("  ", item.Depth),
 			// bullet type
 			bullet,
-			// label
-			item.label,
+			// Label
+			item.Label,
 		))
 	}
 
@@ -84,21 +94,21 @@ func (m *Markdown) List(items []ListItem, numbered bool) *Markdown {
 }
 
 type TaskItem struct {
-	label   string
-	checked bool
+	Label   string
+	Checked bool
 }
 
 func (m *Markdown) Task(items []TaskItem, numbered bool) *Markdown {
 	var results []string
 	for _, task := range items {
 		check := " "
-		if task.checked {
+		if task.Checked {
 			check = "X"
 		}
 		results = append(results, fmt.Sprintf(
 			"[%s] %s",
 			check,
-			task.label,
+			task.Label,
 		))
 	}
 

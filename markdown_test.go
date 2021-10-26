@@ -1,4 +1,4 @@
-package declarativemarkdown
+package markdown
 
 import (
 	"fmt"
@@ -64,6 +64,24 @@ func TestParagraph(t *testing.T) {
 	}
 }
 
+func TestCode(t *testing.T) {
+	md := CreateMarkdown("Code")
+	txt := "package main\nfunction main() {\n}"
+	md.Code(txt, "go")
+	if md.GetLine(1) != fmt.Sprintf("```\n%s\n```", txt) {
+		t.Errorf("Code is different from input")
+	}
+}
+
+func TestQuote(t *testing.T) {
+	md := CreateMarkdown("Quote")
+	txt := "Lorem Ipsum Ajeje Brazorf"
+	md.Quote(txt)
+	if md.GetLine(1) != fmt.Sprintf("> %s", txt) {
+		t.Errorf("Quote is different from input")
+	}
+}
+
 func TestImage(t *testing.T) {
 	md := CreateMarkdown("Title")
 	txt := "here"
@@ -77,7 +95,7 @@ func TestImage(t *testing.T) {
 func TestList(t *testing.T) {
 	md := CreateMarkdown("List")
 	list := make([]ListItem, 0)
-	list = append(list, ListItem{label: "ajeje", depth: 0}, ListItem{label: "brazorf", depth: 1})
+	list = append(list, ListItem{Label: "ajeje", Depth: 0}, ListItem{Label: "brazorf", Depth: 1})
 	md.List(list, false)
 	out := fmt.Sprintf("- ajeje%s  - brazorf", LineBreak)
 	if md.GetLine(1) != out {
@@ -88,7 +106,7 @@ func TestList(t *testing.T) {
 func TestTask(t *testing.T) {
 	md := CreateMarkdown("Task")
 	task := make([]TaskItem, 0)
-	task = append(task, TaskItem{label: "ajeje", checked: true}, TaskItem{label: "brazorf", checked: false})
+	task = append(task, TaskItem{Label: "ajeje", Checked: true}, TaskItem{Label: "brazorf", Checked: false})
 	md.Task(task, false)
 	out := fmt.Sprintf("[X] ajeje%s[ ] brazorf", LineBreak)
 	if md.GetLine(1) != out {

@@ -1,72 +1,63 @@
 # Declarative Markdown
 
-<!-- PROJECT SHIELDS -->
+## About
 
-<!-- ![tests](https://github.com/simonecorsi/go-declarative-markdown/workflows/test/badge.svg) -->
+This package helps in generating markdown in a declarative way without having to handle strings yourself
 
-<!-- toc -->
+## Requirements
 
-- [Declarative Markdown](#declarative-markdown)
-  - [About The Project](#about-the-project)
-  - [Installation](#installation)
-  - [Usage](#usage)
-    - [Arguments](#arguments)
-  - [Contributing](#contributing)
-  - [License](#license)
-  - [Contact](#contact)
-
-<!-- tocstop -->
-
-## About The Project
-
-The purpose of this package is gracefully exiting Node.js processes the "good way" (opinated clearly), while also providing some minir extendability!
-
-This package also takes an array of callbacks that will get executed serially to allow closing user defined resource, eg: a database connection.
-
-<!-- GETTING STARTED -->
+- git
+- go 1.16
 
 ## Installation
 
-You can install locally
-
-```sh
-npm i @scdev/fine
 ```
-
-<!-- USAGE EXAMPLES -->
+go get github.com/simonecorsi/go-declarative-markdown
+```
 
 ## Usage
 
-```js
-const fine = require("@scdev/fine");
-fine(
-  [
-    redis.disconnect,
-    async () => {
-      await db.disconnect();
-      // some more logic
-      return "ok";
-    },
-  ],
-  {
-    timeout: 2000,
-    events: ["SIGINT", "SIGTERM", "uncaughtException", "unhandledRejection"],
-  }
-);
+```
+package main
+
+import mkd "github.com/simonecorsi/go-declarative-markdown"
+
+function main() {
+  md := mkd.CreateMarkdown("My h1 Header")
+  md.Header("About")
+  md.Paragraph("Lorem Ipsum")
+  md.Render() // save to file or whatever
+}
+
 ```
 
-### Arguments
+## API
 
-```js
-fine(callbacks, options);
-```
+### CreateMarkdown
 
-| parameter         | type       | description                                                           | default                                                            |
-| ----------------- | ---------- | --------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| `callbacks`       | function[] | Collection of callback for custom closing events, eg: db.disconnect() | `[]`                                                               |
-| `options.timeout` | Number     | The time before exiting the process                                   | `2000`                                                             |
-| `options.events`  | string[]   | The events the process will listen on                                 | `["SIGINT", "SIGTERM", "uncaughtException", "unhandledRejection"]` |
-| `options.unref`   | boolean    | Should the timeout keep the process alive or not                      | `false`                                                            |
+`CreateMarkdown(title string) *Markdown`
+
+### GetLine
+
+### Render
+
+### Header
+
+### AddLine
+
+### Paragraph
+
+### Quote
+
+### Code
+
+### Image
+
+### List
+
+### Task
+
+### Table
 
 <!-- CONTRIBUTING -->
 
