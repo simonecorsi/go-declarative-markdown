@@ -110,8 +110,6 @@ func TestTable(t *testing.T) {
 
 	md.Table(headers, rows)
 
-	fmt.Println(md.GetLine(1))
-
 	out := "| id | username |"
 	out += LineBreak + "| --- | --- |"
 	out += LineBreak + "| 1 | ajeje_brazorf |"
