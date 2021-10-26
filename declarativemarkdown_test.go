@@ -73,3 +73,25 @@ func TestImage(t *testing.T) {
 		t.Errorf("Paragraph is different from input")
 	}
 }
+
+func TestList(t *testing.T) {
+	md := CreateMarkdown("Title")
+	list := make([]ListItem, 0)
+	list = append(list, ListItem{label: "ajeje", depth: 0}, ListItem{label: "brazorf", depth: 1})
+	md.List(list, false)
+	out := fmt.Sprintf("- ajeje%s  - brazorf", LineBreak)
+	if md.GetLine(1) != out {
+		t.Errorf("List is different from input")
+	}
+}
+
+func TestTask(t *testing.T) {
+	md := CreateMarkdown("Title")
+	task := make([]TaskItem, 0)
+	task = append(task, TaskItem{label: "ajeje", checked: true}, TaskItem{label: "brazorf", checked: false})
+	md.Task(task, false)
+	out := fmt.Sprintf("[X] ajeje%s[ ] brazorf", LineBreak)
+	if md.GetLine(1) != out {
+		t.Errorf("Task is different from input")
+	}
+}

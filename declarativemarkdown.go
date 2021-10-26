@@ -55,3 +55,53 @@ func (m *Markdown) Image(altText string, filepath string) *Markdown {
 	m.AddLine(fmt.Sprintf("![%s](%s)", altText, filepath))
 	return m
 }
+
+type ListItem struct {
+	label string
+	depth int
+}
+
+func (m *Markdown) List(items []ListItem, numbered bool) *Markdown {
+	bullet := "-"
+	var results []string
+	for i, item := range items {
+		if numbered {
+			bullet = fmt.Sprintf("%d.", i+1)
+		}
+		results = append(results, fmt.Sprintf(
+			"%s%s %s",
+			// spaces
+			strings.Repeat("  ", item.depth),
+			// bullet type
+			bullet,
+			// label
+			item.label,
+		))
+	}
+
+	m.AddLine(strings.Join(results, LineBreak))
+	return m
+}
+
+type TaskItem struct {
+	label   string
+	checked bool
+}
+
+func (m *Markdown) Task(items []TaskItem, numbered bool) *Markdown {
+	var results []string
+	for _, task := range items {
+		check := " "
+		if task.checked {
+			check = "X"
+		}
+		results = append(results, fmt.Sprintf(
+			"[%s] %s",
+			check,
+			task.label,
+		))
+	}
+
+	m.AddLine(strings.Join(results, LineBreak))
+	return m
+}
