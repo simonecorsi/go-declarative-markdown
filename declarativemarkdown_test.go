@@ -75,7 +75,7 @@ func TestImage(t *testing.T) {
 }
 
 func TestList(t *testing.T) {
-	md := CreateMarkdown("Title")
+	md := CreateMarkdown("List")
 	list := make([]ListItem, 0)
 	list = append(list, ListItem{label: "ajeje", depth: 0}, ListItem{label: "brazorf", depth: 1})
 	md.List(list, false)
@@ -86,11 +86,36 @@ func TestList(t *testing.T) {
 }
 
 func TestTask(t *testing.T) {
-	md := CreateMarkdown("Title")
+	md := CreateMarkdown("Task")
 	task := make([]TaskItem, 0)
 	task = append(task, TaskItem{label: "ajeje", checked: true}, TaskItem{label: "brazorf", checked: false})
 	md.Task(task, false)
 	out := fmt.Sprintf("[X] ajeje%s[ ] brazorf", LineBreak)
+	if md.GetLine(1) != out {
+		t.Errorf("Task is different from input")
+	}
+}
+
+func TestTable(t *testing.T) {
+	md := CreateMarkdown("Table")
+
+	headers := make([]string, 0)
+	headers = append(headers, "id", "username")
+
+	row := make([]string, 0)
+	row = append(row, "1", "ajeje_brazorf")
+
+	rows := make([][]string, 0)
+	rows = append(rows, row)
+
+	md.Table(headers, rows)
+
+	fmt.Println(md.GetLine(1))
+
+	out := "| id | username |"
+	out += LineBreak + "| --- | --- |"
+	out += LineBreak + "| 1 | ajeje_brazorf |"
+
 	if md.GetLine(1) != out {
 		t.Errorf("Task is different from input")
 	}
