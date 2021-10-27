@@ -10,7 +10,7 @@ import (
 func GenerateReadme() *mkd.Markdown {
 	md := mkd.CreateMarkdown("Declarative Markdown")
 
-	md.AddLine("<p align=\"center\"><img src=\"https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/logo.png\" height=\"250px\" alt=\"Declarative Markdown Gopher Logo\"/></p>")
+	md.AddLine("<p align=\"center\"><img src=\"https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/logo.png\" height=\"350px\" alt=\"Declarative Markdown Gopher Logo\"/></p>")
 	md.HorizontalLine()
 
 	md.Header("About", 2)

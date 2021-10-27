@@ -1,6 +1,6 @@
 # Declarative Markdown
 
-<p align="center"><img src="https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/logo.png" height="250px" alt="Declarative Markdown Gopher Logo"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/logo.png" height="350px" alt="Declarative Markdown Gopher Logo"/></p>
 
 ---
 
@@ -27,7 +27,7 @@ go get github.com/simonecorsi/go-declarative-markdown
 ```
 package main
 
-import mkd "github.com/simonecorsi/go-declarative-markdown"
+import mkd "github.com/simonecorsi/go-declarative-markdown/markdown"
 
 function main() {
   md := mkd.CreateMarkdown("My h1 Header")
