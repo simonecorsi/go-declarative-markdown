@@ -1,10 +1,10 @@
 # Declarative Markdown
 
-<p align="center"><img src="https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/logo.png" height="350px" alt="Declarative Markdown Gopher Logo"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/banner.jpg" alt="Declarative Markdown Gopher Logo"/></p>
 
 ## About
 
-This package helps in generating markdown in a declarative way without having to handle strings yourself
+Zero dependencies, minimalistic and fast declarative module for declarative markdown generation that avoids you to handle strings interpolation manually 🚀
 
 > This README has been generated using this own package!
 You can see the code example [here](./docs/generator.go)
