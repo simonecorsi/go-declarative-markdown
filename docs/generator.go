@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	mkd "github.com/simonecorsi/go-declarative-markdown/markdown"
@@ -9,8 +10,12 @@ import (
 func GenerateReadme() *mkd.Markdown {
 	md := mkd.CreateMarkdown("Declarative Markdown")
 
+	md.AddLine("<p align=\"center\"><img src=\"https://github.com/simonecorsi/go-declarative-markdown/blob/master/logo.png?raw=true\" alt=\"Declarative Markdown Gopher Logo\"/></p>")
+	md.HorizontalLine()
+
 	md.Header("About", 2)
 	md.Paragraph("This package helps in generating markdown in a declarative way without having to handle strings yourself")
+	md.Quote("This README has been generated using this own package!\nYou can see the code example " + mkd.Link("here", "./docs/generator.go"))
 
 	md.Header("Requirements", 2)
 	requirements := append(
@@ -38,7 +43,6 @@ func GenerateReadme() *mkd.Markdown {
 	md.Header("API", 2)
 
 	md.Header("CreateMarkdown", 3)
-
 	md.Paragraph(mkd.InlineCode("CreateMarkdown(title string) *Markdown"))
 	md.Paragraph("Initialize new Markdown instance with h1 title on top.")
 	md.Quote("Returns reference to the Markdown to allow chaining")
@@ -102,6 +106,16 @@ func GenerateReadme() *mkd.Markdown {
 	md.Paragraph(mkd.InlineCode("Table(headers []string, rows [][]string) *Markdown"))
 	md.Paragraph("Creates a table")
 	md.Quote("Returns reference to the Markdown to allow chaining")
+
+	md.Header("Contributing", 2)
+	md.Paragraph("Project is pretty simple and straight forward for what is my needs, but if you have any idea you're welcome.")
+	md.Paragraph(fmt.Sprintf("This projects uses %s so be sure to use standard commit format or PR won't be accepted", mkd.Link("Conventional Commit Format", "https://www.conventionalcommits.org")))
+
+	md.Header("License", 2)
+	md.Paragraph("Distributed under the MIT License. See `LICENSE` for more information.")
+
+	md.Header("Contact", 2)
+	md.Paragraph("Simone Corsi - " + mkd.Link("@im_simonecorsi", "https://twitter.com/im_simonecorsi"))
 
 	return md
 }

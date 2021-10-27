@@ -32,6 +32,16 @@ func TestStrike(t *testing.T) {
 	}
 }
 
+func TestLink(t *testing.T) {
+	txt := "My Test"
+	link := "http://google.com"
+	out := Link(txt, link)
+	expect := fmt.Sprintf("[%s](%s)", txt, link)
+	if expect != out {
+		t.Errorf("[Invalid output]\nExpected:\n%s\n\nGot:\n%s\n", expect, out)
+	}
+}
+
 func TestInlineCode(t *testing.T) {
 	txt := "My Test"
 	out := InlineCode(txt)

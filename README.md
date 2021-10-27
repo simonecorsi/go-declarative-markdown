@@ -1,8 +1,15 @@
 # Declarative Markdown
 
+<p align="center"><img src="https://github.com/simonecorsi/go-declarative-markdown/blob/master/logo.png?raw=true" alt="Declarative Markdown Gopher Logo"/></p>
+
+---
+
 ## About
 
 This package helps in generating markdown in a declarative way without having to handle strings yourself
+
+> This README has been generated using this own package!
+You can see the code example [here](./docs/generator.go)
 
 ## Requirements
 
@@ -146,3 +153,17 @@ type TaskItem struct {
 Creates a table
 
 > Returns reference to the Markdown to allow chaining
+
+## Contributing
+
+Project is pretty simple and straight forward for what is my needs, but if you have any idea you're welcome.
+
+This projects uses [Conventional Commit Format](https://www.conventionalcommits.org) so be sure to use standard commit format or PR won't be accepted
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+Simone Corsi - [@im_simonecorsi](https://twitter.com/im_simonecorsi)
