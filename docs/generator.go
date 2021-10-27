@@ -31,7 +31,7 @@ func GenerateReadme() *mkd.Markdown {
 	md.Header("Usage", 2)
 	code := ""
 	code += "package main\n\n"
-	code += "import mkd \"github.com/simonecorsi/go-declarative-markdown\"\n\n"
+	code += "import mkd \"github.com/simonecorsi/go-declarative-markdown/markdown\"\n\n"
 	code += "function main() {\n"
 	code += "  md := mkd.CreateMarkdown(\"My h1 Header\")\n"
 	code += "  md.Header(\"About\")\n"
