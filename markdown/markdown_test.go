@@ -6,7 +6,7 @@ import (
 )
 
 func TestInit(t *testing.T) {
-	md := CreateMarkdown("title")
+	md := CreateMarkdown("Init")
 	if fmt.Sprintf("%T", md.data) != "[]string" {
 		t.Errorf("Initialization didn't add default values")
 	}
@@ -42,21 +42,21 @@ func TestHeader(t *testing.T) {
 }
 
 func TestRender(t *testing.T) {
-	md := CreateMarkdown("Title")
-	if md.Render() != "# Title" {
+	md := CreateMarkdown("Render")
+	if md.Render() != "# Render" {
 		t.Errorf("Rendered content differs")
 	}
 }
 
 func TestGetLine(t *testing.T) {
-	md := CreateMarkdown("Title")
-	if md.GetLine(0) != "# Title" {
+	md := CreateMarkdown("GetLine")
+	if md.GetLine(0) != "# GetLine" {
 		t.Errorf("Paragraph is different from input")
 	}
 }
 
 func TestParagraph(t *testing.T) {
-	md := CreateMarkdown("Title")
+	md := CreateMarkdown("Paragraph")
 	txt := "Lorem Ipsum Ajeje Brazorf"
 	md.Paragraph(txt)
 	if md.GetLine(1) != txt {
@@ -82,13 +82,22 @@ func TestQuote(t *testing.T) {
 	}
 }
 
+func TestHorizontalLine(t *testing.T) {
+	md := CreateMarkdown("HorizontalLine")
+	txt := "---"
+	md.HorizontalLine()
+	if md.GetLine(1) != txt {
+		t.Errorf("HorizontalLine is different from input")
+	}
+}
+
 func TestImage(t *testing.T) {
-	md := CreateMarkdown("Title")
+	md := CreateMarkdown("Image")
 	txt := "here"
 	img := "./image.png"
 	md.Image(txt, img)
 	if md.GetLine(1) != fmt.Sprintf("![%s](%s)", txt, img) {
-		t.Errorf("Paragraph is different from input")
+		t.Errorf("Image is different from input")
 	}
 }
 
@@ -133,6 +142,6 @@ func TestTable(t *testing.T) {
 	out += LineBreak + "| 1 | ajeje_brazorf |"
 
 	if md.GetLine(1) != out {
-		t.Errorf("Task is different from input")
+		t.Errorf("Table is different from input")
 	}
 }

@@ -22,8 +22,8 @@ func CreateMarkdown(title string) *Markdown {
 	return md
 }
 
-func (m *Markdown) GetLine(line int) string {
-	return m.data[line]
+func (m *Markdown) GetLine(lineNumber int) string {
+	return m.data[lineNumber]
 }
 
 func (m *Markdown) Render() string {
@@ -58,6 +58,11 @@ func (m *Markdown) Quote(text string) *Markdown {
 
 func (m *Markdown) Code(text string, language string) *Markdown {
 	m.AddLine(fmt.Sprintf("```\n%s\n```", text))
+	return m
+}
+
+func (m *Markdown) HorizontalLine() *Markdown {
+	m.AddLine("---")
 	return m
 }
 

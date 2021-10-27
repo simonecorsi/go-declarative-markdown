@@ -37,50 +37,112 @@ function main() {
 
 `CreateMarkdown(title string) *Markdown`
 
+Initialize new Markdown instance with h1 title on top.
+
+> Returns reference to the Markdown to allow chaining
+
 ### GetLine
+
+`GetLine(lineNumber int) string`
+
+Utilities to get a line in the markdown, this is a slice before rendering so LineBreak don't counts
 
 ### Render
 
+`Render() string`
+
+Renders all the content add in this markdown instance
+
 ### Header
+
+`Header(text string, weigth int) *Markdown`
+
+Creates an heading, you can specify the weigth [1-6]
+
+> Returns reference to the Markdown to allow chaining
 
 ### AddLine
 
+`AddLine(text string) *Markdown`
+
+Utilities that pushes content to the slices of lines, this is used internally by each other command
+
+> Returns reference to the Markdown to allow chaining
+
 ### Paragraph
+
+`Paragraph(text string) *Markdown`
+
+Create a generic paragraph of text
+
+> Returns reference to the Markdown to allow chaining
 
 ### Quote
 
+`Quote(text string) *Markdown`
+
+Create quoted paragraph of text
+
+> Returns reference to the Markdown to allow chaining
+
 ### Code
+
+`Code(text string, language string) *Markdown`
+
+Creates a snippet of code with syntax highligh
+
+> Returns reference to the Markdown to allow chaining
+
+### HorizontalLine
+
+`HorizontalLine() *Markdown`
+
+Creates an horizontal line to dive sections
+
+> Returns reference to the Markdown to allow chaining
 
 ### Image
 
+`Image(altText string, filepath string) *Markdown`
+
+Creates an image with a title
+
+> Returns reference to the Markdown to allow chaining
+
 ### List
+
+`List(items []ListItem, numbered bool) *Markdown`
+
+Creates a list of item, either numbered or with dashes, default to dashes
+
+> Returns reference to the Markdown to allow chaining
+
+```
+type ListItem struct {
+	Label string
+	Depth int
+}
+```
 
 ### Task
 
+`Task(items []TaskItem, numbered bool) *Markdown`
+
+Creates a list with checkboxes
+
+> Returns reference to the Markdown to allow chaining
+
+```
+type TaskItem struct {
+	Label   string
+	Checked bool
+}
+```
+
 ### Table
 
-<!-- CONTRIBUTING -->
+`Table(headers []string, rows [][]string) *Markdown`
 
-## Contributing
+Creates a table
 
-Project is pretty simple and straight forward for what is my needs, but if you have any idea you're welcome.
-
-This projects uses [commitizen](https://github.com/commitizen/cz-cli) so be sure to use standard commit format or PR won't be accepted
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'feat(scope): some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<!-- LICENSE -->
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-<!-- CONTACT -->
-
-## Contact
-
-Simone Corsi - [@im_simonecorsi](https://twitter.com/im_simonecorsi)
+> Returns reference to the Markdown to allow chaining
