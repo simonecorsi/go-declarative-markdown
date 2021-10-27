@@ -2,8 +2,6 @@
 
 <p align="center"><img src="https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/logo.png" height="350px" alt="Declarative Markdown Gopher Logo"/></p>
 
----
-
 ## About
 
 This package helps in generating markdown in a declarative way without having to handle strings yourself
