@@ -76,7 +76,7 @@ type ListItem struct {
 	Depth int
 }
 
-func (m *Markdown) List(items []ListItem, numbered bool) *Markdown {
+func GenerateList(items []ListItem, numbered bool) []string {
 	bullet := "-"
 	var results []string
 	for i, item := range items {
@@ -93,8 +93,12 @@ func (m *Markdown) List(items []ListItem, numbered bool) *Markdown {
 			item.Label,
 		))
 	}
+	return results
+}
 
-	m.AddLine(strings.Join(results, LineBreak))
+func (m *Markdown) List(items []ListItem, numbered bool) *Markdown {
+	list := GenerateList(items, numbered)
+	m.AddLine(strings.Join(list, LineBreak))
 	return m
 }
 
@@ -132,5 +136,26 @@ func (m *Markdown) Table(headers []string, rows [][]string) *Markdown {
 	}
 
 	m.AddLine(t)
+	return m
+}
+
+func (m *Markdown) GenerateToc(index int) *Markdown {
+	list := make([]ListItem, 0)
+	for _, row := range m.data {
+		c := strings.Count(row, "#")
+		if c == 0 {
+			continue
+		}
+
+		title := strings.ToLower(strings.SplitAfter(row, "# ")[1])
+
+		list = append(list, ListItem{
+			Label: Link(title, "#"+strings.ReplaceAll(title, " ", "-")),
+			Depth: c - 1,
+		})
+	}
+
+	m.data = append(m.data[:index], append([]string{"## Table of content", strings.Join(GenerateList(list, false), LineBreak)}, m.data[index:]...)...)
+
 	return m
 }

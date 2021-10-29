@@ -1,10 +1,36 @@
 # Declarative Markdown
 
-<p align="center"><img src="https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/banner.jpg" alt="Declarative Markdown Gopher Logo"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/banner.png" alt="Declarative Markdown Gopher Logo"/></p>
+
+## Table of content
+
+- [declarative markdown](#declarative-markdown)
+  - [about](#about)
+  - [requirements](#requirements)
+  - [installation](#installation)
+  - [usage](#usage)
+  - [api](#api)
+    - [createmarkdown](#createmarkdown)
+    - [getline](#getline)
+    - [render](#render)
+    - [header](#header)
+    - [addline](#addline)
+    - [paragraph](#paragraph)
+    - [quote](#quote)
+    - [code](#code)
+    - [horizontalline](#horizontalline)
+    - [image](#image)
+    - [list](#list)
+    - [task](#task)
+    - [table](#table)
+    - [generatetoc](#generatetoc)
+  - [contributing](#contributing)
+  - [license](#license)
+  - [contact](#contact)
 
 ## About
 
-Zero dependencies, minimalistic and fast declarative module for declarative markdown generation that avoids you to handle strings interpolation manually 🚀
+This package helps in generating markdown in a declarative way without having to handle strings yourself
 
 > This README has been generated using this own package!
 You can see the code example [here](./docs/generator.go)
@@ -151,6 +177,12 @@ type TaskItem struct {
 Creates a table
 
 > Returns reference to the Markdown to allow chaining
+
+### GenerateToc
+
+`GenerateToc(index int) *Markdown`
+
+Creates table of content and adds it after the main h1 title, call it before rendering!
 
 ## Contributing
 

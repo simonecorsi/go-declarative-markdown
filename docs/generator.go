@@ -106,6 +106,10 @@ func GenerateReadme() *mkd.Markdown {
 	md.Paragraph("Creates a table")
 	md.Quote("Returns reference to the Markdown to allow chaining")
 
+	md.Header("GenerateToc", 3)
+	md.Paragraph(mkd.InlineCode("GenerateToc(index int) *Markdown"))
+	md.Paragraph("Creates table of content and adds it after the main h1 title, call it before rendering!")
+
 	md.Header("Contributing", 2)
 	md.Paragraph("Project is pretty simple and straight forward for what is my needs, but if you have any idea you're welcome.")
 	md.Paragraph(fmt.Sprintf("This projects uses %s so be sure to use standard commit format or PR won't be accepted", mkd.Link("Conventional Commit Format", "https://www.conventionalcommits.org")))
@@ -120,5 +124,5 @@ func GenerateReadme() *mkd.Markdown {
 }
 
 func main() {
-	os.WriteFile("README.md", []byte(GenerateReadme().Render()), 0666)
+	os.WriteFile("README.md", []byte(GenerateReadme().GenerateToc(2).Render()), 0666)
 }

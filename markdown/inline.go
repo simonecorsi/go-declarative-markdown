@@ -14,8 +14,8 @@ func Strike(text string) string {
 	return fmt.Sprintf("~~%s~~", text)
 }
 
-func Link(title string, text string) string {
-	return fmt.Sprintf("[%s](%s)", title, text)
+func Link(title string, link string) string {
+	return fmt.Sprintf("[%s](%s)", title, link)
 }
 
 func InlineCode(text string) string {

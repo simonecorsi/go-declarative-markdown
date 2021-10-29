@@ -145,3 +145,20 @@ func TestTable(t *testing.T) {
 		t.Errorf("Table is different from input")
 	}
 }
+
+func TestToc(t *testing.T) {
+	md := CreateMarkdown("Init")
+	md.Header("h2 with something", 2)
+	md.Paragraph("Lorem")
+	md.Header("h3 with Something", 3)
+	md.Paragraph("Ipsum")
+	md.Header("h4 with Something", 4)
+	md.Paragraph("Wannabe")
+	md.Header("h2 with Something", 2)
+	md.Paragraph("Lorem")
+	md.Header("h3 with Something", 3)
+	md.Paragraph("Ipsum")
+	md.Header("h4 with Something", 4)
+	md.Paragraph("Wannabe")
+	md.GenerateToc()
+}
