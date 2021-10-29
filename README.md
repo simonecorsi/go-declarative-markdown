@@ -1,6 +1,6 @@
 # Declarative Markdown
 
-<p align="center"><img src="https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/banner.png" alt="Declarative Markdown Gopher Logo"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/da5ee95c99a8f17e3f9f5cd2be387807d5f85536/banner.jpg" alt="Declarative Markdown Gopher Logo"/></p>
 
 ## Table of content
 

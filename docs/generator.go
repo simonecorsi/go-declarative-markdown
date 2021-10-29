@@ -10,7 +10,8 @@ import (
 func GenerateReadme() *mkd.Markdown {
 	md := mkd.CreateMarkdown("Declarative Markdown")
 
-	md.AddLine("<p align=\"center\"><img src=\"https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/main/banner.png\" alt=\"Declarative Markdown Gopher Logo\"/></p>")
+	img := "https://raw.githubusercontent.com/simonecorsi/go-declarative-markdown/da5ee95c99a8f17e3f9f5cd2be387807d5f85536/banner.jpg"
+	md.AddLine(fmt.Sprintf("<p align=\"center\"><img src=\"%s\" alt=\"Declarative Markdown Gopher Logo\"/></p>", img))
 
 	md.Header("About", 2)
 	md.Paragraph("This package helps in generating markdown in a declarative way without having to handle strings yourself")
